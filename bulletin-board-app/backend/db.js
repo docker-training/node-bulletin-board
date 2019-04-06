@@ -1,13 +1,11 @@
 var Sequelize = require('sequelize');
-var username = 'sa';
-var password = 'DockerCon!!!';
-var host = 'bb-db';
-var dbName = 'BulletinBoard';
+var dbConfig = require('../config/dbConfig');
+var log = require('../log');
 
-var sequelize = new Sequelize(dbName, username, password, {
+var sequelize = new Sequelize(dbConfig.options.dbName, dbConfig.options.username, dbConfig.options.password, {
     dialect: 'mssql',
-    host: host,
-    port: 1433,
+    host: dbConfig.options.host,
+    port: dbConfig.options.port,
     dialectOptions: {
         requestTimeout: 30000
     }
@@ -16,10 +14,10 @@ var sequelize = new Sequelize(dbName, username, password, {
 sequelize
     .authenticate()
     .then(() => {
-        console.log('Successful connection to SQL Server.');
+        log.Logger.info('Successful connection to SQL Server.');
     })
     .catch(err => {
-        console.error('** SQL Server connection failed: ', err);
+        log.Logger.error('** SQL Server connection failed: ', err);
         process.exit(1);
     });
 

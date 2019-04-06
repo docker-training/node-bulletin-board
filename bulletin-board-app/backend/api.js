@@ -1,20 +1,21 @@
-var db = require('./db.js');
+var db = require('./db');
+var log = require('../log');
 
 exports.events = function (req, res) {
-  console.log('Loading DB events...');
+  log.Logger.info('Loading DB events...');
   db.Events
     .findAll()
     .then(events => {
-        console.log('Fetched events, count: ' + events.length);
+        log.Logger.debug('Fetched events, count: ' + events.length);
         res.json(events);
     })
     .catch(err => {
-        console.error('** Fetch failed: ', err);
+      log.Logger.error('** Fetch failed: ', err);
     });
 };
 
 exports.event = function (req, res) {
-  console.log('Handling event call, method: ' + req.method + ', event ID: ' + req.params.eventId)
+  log.Logger.debug('Handling event call, method: ' + req.method + ', event ID: ' + req.params.eventId)
   switch(req.method) {
     case "DELETE":
       db.Events
@@ -23,7 +24,7 @@ exports.event = function (req, res) {
           id: req.params.eventId
         }
       }).then(function() {
-        console.log('Deleted event with id: ' + req.params.eventId)
+        log.Logger.info('Deleted event with id: ' + req.params.eventId)
         res.status(200).end();
       });
       break
@@ -35,6 +36,7 @@ exports.event = function (req, res) {
           date: req.body.date
         })
         .then(function() {
+          log.Logger.info('Created event with title: ' + req.body.title)
           res.send('{}');
           res.status(201).end();
         });

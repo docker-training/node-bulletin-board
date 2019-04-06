@@ -1,4 +1,4 @@
-FROM microsoft/mssql-server-linux:2017-CU1
+FROM microsoft/mssql-server-linux:2017-CU13
 
 ENV ACCEPT_EULA=Y \
     MSSQL_SA_PASSWORD=DockerCon!!!
