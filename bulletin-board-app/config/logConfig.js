@@ -1,10 +1,14 @@
-const winston = require('winston');
+const { format, transports } = require('winston');
 var logConfig = module.exports = {};
 
 logConfig.options = {
+    format: format.combine(
+        format.splat(),
+        format.simple()
+    ),
     transports: [
-        new winston.transports.Console({
-            level: 'info'
+        new transports.Console({
+            level: 'debug'
         })
     ]
 };
