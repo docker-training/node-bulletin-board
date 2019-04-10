@@ -5,7 +5,8 @@ var express        = require('express'),
     morgan         = require('morgan'),
     prometheus     = require('prom-client'),
     routes         = require('./backend'),
-    api            = require('./backend/api');
+    api            = require('./backend/api'),
+    log            = require('./log');
 
 var app = module.exports = express();
 
@@ -68,4 +69,4 @@ app.use((req, res, next) => {
 prometheus.collectDefaultMetrics();
 
 app.listen(8080);
-console.log('Magic happens on port 8080...');
+log.Logger.info('Magic happens on port 8080...');

@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+  bb-db:
+    image: ${dockerId}/bb-db:v3
+    build:
+      context: ./bulletin-board-db
+    networks:
+      - bb-net
+    volumes:
+      - sqlbackup:/var/opt/mssql
+
+  bb-app:
+    image: ${dockerId}/bb-app:v3.3
+    build:
+      context: ./bulletin-board-app
+      dockerfile: Dockerfile.v3.3
+    networks:
+      - bb-net
+    configs:
+      - source: logConfig
+        target: /app/config/logConfig.js
+    secrets:
+      - source: dbConfig
+        target: /app/config/dbConfig.js
+
+  bb-proxy:
+    image: ${dockerId}/bb-proxy:v3
+    build:
+      context: ./bulletin-board-proxy
+    ports:
+      - "80:80"
+    networks:
+      - bb-net
+
+networks:
+  bb-net:
+
+volumes:
+  sqlbackup:
+
+configs:
+  logConfig:
+    external: true
+
+secrets:
+  dbConfig:
+    external: true

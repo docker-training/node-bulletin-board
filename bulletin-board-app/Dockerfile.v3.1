@@ -1,0 +1,15 @@
+FROM node AS builder
+
+WORKDIR /src
+COPY package.json .
+RUN npm install
+
+# app image
+FROM node
+
+EXPOSE 8080
+CMD npm start
+
+WORKDIR /app
+COPY --from=builder /src/node_modules/ /app/node_modules/
+COPY . .
