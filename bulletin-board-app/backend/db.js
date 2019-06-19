@@ -12,8 +12,10 @@ var sequelize = new Sequelize(dbConfig.connection.dbName, dbConfig.connection.us
         max: dbConfig.pool.max
     },
     dialectOptions: {
-        requestTimeout: 30000
-    }    
+        requestTimeout: 30000,
+        encrypt: false
+    },
+    operatorsAliases: false
 });
 
 sequelize
