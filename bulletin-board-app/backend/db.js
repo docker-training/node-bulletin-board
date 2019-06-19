@@ -13,8 +13,10 @@ var sequelize = new Sequelize(dbName, username, password, {
         timestamps: false
     },
     dialectOptions: {
-        requestTimeout: 30000
-    }
+        requestTimeout: 30000,
+        encrypt: false
+    },
+    operatorsAliases: false
 });
 
 sequelize
