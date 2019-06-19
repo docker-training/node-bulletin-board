@@ -3,8 +3,6 @@ version: '3.7'
 services:
   bb-db:
     image: ${dockerId}/bb-db:v3
-    build:
-      context: ./bulletin-board-db
     networks:
       - bb-net
     volumes:
@@ -12,17 +10,13 @@ services:
 
   bb-app:
     image: ${dockerId}/bb-app:v3
-    build:
-      context: ./bulletin-board-app
     networks:
       - bb-net
 
   bb-proxy:
     image: ${dockerId}/bb-proxy:v3
-    build:
-      context: ./bulletin-board-proxy
     ports:
-      - "80:80"
+      - "8000:80"
     networks:
       - bb-net
 
