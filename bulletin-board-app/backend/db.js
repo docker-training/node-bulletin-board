@@ -1,13 +1,17 @@
 var Sequelize = require('sequelize');
-var username = 'sa';
+var username = 'postgres';
 var password = 'DockerCon!!!';
 var host = 'bb-db';
-var dbName = 'BulletinBoard';
+var dbName = 'postgres';
 
 var sequelize = new Sequelize(dbName, username, password, {
-    dialect: 'mssql',
+    dialect: 'postgres',
     host: host,
-    port: 1433,
+    port: 5432,
+    omitNull: true,
+    define: {
+        timestamps: false
+    },
     dialectOptions: {
         requestTimeout: 30000
     }
