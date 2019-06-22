@@ -15,7 +15,9 @@
     "tedious": "^2.0.1",
     "sequelize": "^4.20.1",
     "prom-client": "^10.2.2",
-    "winston": "3.2.1"
+    "winston": "3.2.1",
+    "pg": "^7.0.0",
+    "pg-hstore": "^2.3.3"
   },
   "devDependencies": {
     "body-parser": "^1.14.1",

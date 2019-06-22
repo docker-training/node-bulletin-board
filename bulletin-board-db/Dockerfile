@@ -1,10 +1,5 @@
-FROM microsoft/mssql-server-linux:2017-CU13
+FROM postgres:9.6
 
-ENV ACCEPT_EULA=Y \
-    MSSQL_SA_PASSWORD=DockerCon!!!
+ENV MSSQL_SA_PASSWORD=DockerCon!!!
 
-WORKDIR /init
-COPY init-db.* ./
-
-RUN chmod +x ./init-db.sh
-RUN /opt/mssql/bin/sqlservr & ./init-db.sh
+COPY init-db.sh /docker-entrypoint-initdb.d/init-db.sh
