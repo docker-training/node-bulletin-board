@@ -6,7 +6,7 @@ services:
     networks:
       - bb-net
     volumes:
-      - sqlbackup:/var/opt/mssql
+      - sqlbackup:/var/lib/postgresql/data
 
   bb-app:
     image: ${dockerId}/bb-app:v3
