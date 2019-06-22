@@ -5,9 +5,13 @@ var log = require('../log');
 log.Logger.debug('Initializing connection to SQL Server: %s', dbConfig.connection.host);
 
 var sequelize = new Sequelize(dbConfig.connection.dbName, dbConfig.connection.username, dbConfig.connection.password, {
-    dialect: 'mssql',
+    dialect: 'postgres',
     host: dbConfig.connection.host,
     port: dbConfig.connection.port,
+    omitNull: true,
+    define: {
+        timestamps: false
+    },
     pool: {
         max: dbConfig.pool.max
     },
