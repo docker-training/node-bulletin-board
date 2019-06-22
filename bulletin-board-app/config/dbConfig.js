@@ -1,11 +1,11 @@
 var dbConfig = module.exports = {};
 
 dbConfig.connection = {
-    username: 'sa',
+    username: 'postgres',
     password: 'DockerCon!!!',
     host: 'bb-db',
-    post: 1433,
-    dbName: 'BulletinBoard'
+    post: 5432,
+    dbName: 'postgres'
 };
 
 dbConfig.pool = {
