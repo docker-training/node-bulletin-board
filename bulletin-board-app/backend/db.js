@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 var username = process.env.DB_USER;
-var password = 'DockerCon!!!';
+var password = fs.readFileSync('/run/secrets/passwd','utf8').trim();
 var host = process.env.DB_HOST;
 var dbName = process.env.DB_NAME;
 
