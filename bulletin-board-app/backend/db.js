@@ -1,3 +1,5 @@
+const fs = require('fs');  
+
 var Sequelize = require('sequelize');
 var username = process.env.DB_USER;
 var password = fs.readFileSync('/run/secrets/passwd','utf8').trim();
