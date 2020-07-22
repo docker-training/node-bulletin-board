@@ -1,8 +1,8 @@
 var Sequelize = require('sequelize');
-var username = 'postgres';
+var username = process.env.DB_USER;
 var password = 'DockerCon!!!';
-var host = 'bb-db';
-var dbName = 'postgres';
+var host = process.env.DB_HOST;
+var dbName = process.env.DB_NAME;
 
 var sequelize = new Sequelize(dbName, username, password, {
     dialect: 'postgres',
